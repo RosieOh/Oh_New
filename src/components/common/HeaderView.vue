@@ -19,12 +19,35 @@
         <v-btn icon="light_mode" @click="toggleTheme" v-else></v-btn>
         <div v-if="!profile">
             <v-btn
-                icon="mdi"
+                icon="mdi:mdi-account-outline"
+                @click="login"
+                v-if="theme.current.value.dark"
             ></v-btn>
-
+            <v-btn icon="mdi:mdi-account" @click="login" v-else></v-btn>
+        </div>
+        <div v-else>
+            <v-menu open-on-hover>
+                <template v-slot:activator="{ props }">
+                    <v-btn>
+                        <img
+                            :src="profile.thumbnail_image"
+                            alt="kakao_profile"
+                            width="30"
+                            height="30"
+                            v-if="profile"
+                            />
+                    </v-btn>
+                </template>
+                <v-list>
+                    <v-list-item v-for="(item, i) in profileMenu" :key="i">
+                        <v-btn @click="movePage(item.url)">{{ item.title }}</v-btn>
+                    </v-list-item>
+                </v-list>
+            </v-menu>
         </div>
     </v-app-bar>
-    <div>
-        
-    </div>
 </template>
+
+<script>
+
+</script>
